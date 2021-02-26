@@ -1,17 +1,17 @@
-const getMoviesByName(search) {
+const getMoviesByName = async (search) => {
     const baseUrl = 'http://www.omdb.com'
-    const apiKey = '34898ec0'
-    const url = '${baseUrl}/?apikey=${apiKey}&s={search}'
+    const apiKey = ''
+    const url = `${baseUrl}/?apikey=${apiKey}&s={search}`
 
-    const res = await fetch(url)
-    const data = await res.json()
-    return data
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
 }
 
 const getMovieDetailsById = async (movieId) => {
     const baseUrl = 'http://www.omdb.com'
     const apiKey = ''
-    const url = '${baseUrl}/?apikey=${apiKey}&s={movieId}'
+    const url = `${baseUrl}/?apikey=${apiKey}&s={movieId}`
 
     const res = await fetch(url);
     const data = await res.json();
