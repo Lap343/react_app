@@ -86,7 +86,7 @@ class App extends React.Component {
                 posterUrl={currentMovie?.Poster}
                 title={currentMovie?.Title}
                 rated={currentMovie?.Rated}
-                runtime={currentMovie?.Runtime}
+                runtime={currentMovie?.Runtime} 
                 genre={currentMovie?.Genre}
                 rating={currentMovie?.Ratings[0]?.Value}
                 plot={currentMovie?.Plot}
