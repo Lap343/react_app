@@ -1,6 +1,6 @@
 export const getMoviesByName = async (search) => {
     const baseUrl = 'http://www.omdbapi.com'
-    const apiKey = '34898ec0'
+    const apiKey = process.env.REACT_APP_OMDB_API_KEY;
     const url = `${baseUrl}/?apikey=${apiKey}&s=${search}`
 
     const res = await fetch(url);
@@ -10,7 +10,7 @@ export const getMoviesByName = async (search) => {
 
 export const getMovieDetailsById = async (movieId) => {
     const baseUrl = 'http://www.omdbapi.com'
-    const apiKey = '34898ec0'
+    const apiKey = process.env.REACT_APP_OMDB_API_KEY;
     const url = `${baseUrl}/?apikey=${apiKey}&s=${movieId}`
 
     const res = await fetch(url);

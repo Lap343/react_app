@@ -1,7 +1,14 @@
-const Modal = () => {
+// import { render } from "react-dom/cjs/react-dom-server.browser.development"
+
+const Modal = ({ show=false, onClose, children}) => {
     return(
-        <div className='modal' style= >
-            hi
+        <div className='modal' style={{display: show ? 'flex': 'none'}} >
+            <div className="modal-content">
+                <div>
+                    <button onClick={onClose}>X</button>
+                </div>
+                {children}
+            </div>
         </div>
     )
 }

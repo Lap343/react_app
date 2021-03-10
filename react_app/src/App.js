@@ -1,17 +1,17 @@
 import React from 'react';
 import MovieCard from './MovieCard';
 import MovieDetails from './MovieDeatails';
-import MovieList from './MovieList';
+import ListView from './ListView';
 import Modal from './Modal';
-import { getMoviesByName, getMoviesById } from './utils';
+import { getMoviesByName, getMovieDetailsById } from './utils';
 
 class App extends React.Component {
 
   constructor(props){
-    super(props);
+    super(props)
 
     this.state = {
-      searchTerm: 'hello',
+      searchTerm: 'batman',
       isLoading: false,
       movies: null,
       error: null,
@@ -19,7 +19,13 @@ class App extends React.Component {
       currentMovie: null
     }
 
-    // this.greet = this.greet.bind(this);
+    this.setModalState = this.setModalState.bind(this);
+  }
+
+  setModalState(show=false) {
+    this.setState({
+      showModal: show
+    });
   }
 
   async componentDidMount(){
@@ -42,28 +48,16 @@ class App extends React.Component {
           error: error,
         })
       }
-    }, 1);
+    }, 100);
     
   }
 
-  componentDidUpdate() {
-    console.log(this.state)
-  }
-
   async onMovieCardClicked(movieId) {
-    const movie = await getMoviesById(movieId)
+    const movie = await getMovieDetailsById(movieId)
     this.setState({
       currentMovie: movie,
       showModal: true
     })
-  }
-
-  // greet(){
-  //   alert(this.state.greeting)
-  // }
-
-  closeModal() {
-    console.log()
   }
 
   render(){
@@ -76,27 +70,29 @@ class App extends React.Component {
         ? <h1>Loading Data</h1> 
           : (
           <>
-          <Modal show={this.state.showModal} onClick={() => closeModal()} />
-          {/* <button onClick={this.greet}>Click Me!!!</button> */}
-            <MovieList 
-              movies={this.state.movies?.Search} 
-              render={({Title, Poster, Type }) => 
+            <ListView 
+              list={this.state.movies?.Search} 
+              render={(movie) => (
                 <MovieCard 
-                  onClick={() => this.onMovieCardClicked()}
-                  title={Title} 
-                  posterUrl={Poster} 
-                  type={Type} />} />
-            <Modal show='false' onClose={() => this.setModalstate(false)} />
-            <MovieDetails 
-              posterUrl={currentMovie?.Poster}
-              title={currentMovie?.Title}
-              rated={currentMovie?.Rated}
-              runtime={currentMovie?.Runtime}
-              genre={currentMovie?.Genre}
-              rating={currentMovie?.Ratings[0].Value}
-              plot={currentMovie?.Plot}
-              actors={currentMovie?.actors}
+                  title={movie.Title} 
+                  posterUrl={movie.Poster} 
+                  type={movie.Type} 
+                  onClick={() => this.onMovieCardClicked(movie.imdbId)}
+                />
+              )}
             />
+            <Modal show={this.state.showModal} onClose={() => this.setModalstate(false)} />
+              <MovieDetails 
+                posterUrl={currentMovie?.Poster}
+                title={currentMovie?.Title}
+                rated={currentMovie?.Rated}
+                runtime={currentMovie?.Runtime}
+                genre={currentMovie?.Genre}
+                rating={currentMovie?.Ratings[0]?.Value}
+                plot={currentMovie?.Plot}
+                actors={currentMovie?.actors}
+              />
+            <Modal />
           </>
         )
       }
