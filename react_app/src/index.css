@@ -11,3 +11,87 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.movie-card {
+  display: inline-block;
+  width: 200px;
+  height: 400px;
+  border: 1px solid lightgray;
+}
+
+.movie-card img {
+  width: 100%;
+}
+
+.movie-card p:first-of-type {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.movie-details {
+  display: flex;
+}
+
+.movie-details .poster {
+  margin-right: 20px;
+}
+
+.movie-details .header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.movie-details .title {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.movie-details .rating {
+  margin: 0;
+  padding: 0;
+  color: blue;
+}
+
+.movie-details ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.movie-details li {
+  display: inline-block;
+  background-color: lightgray;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 5px;
+}
+
+.movie-details .info-section {
+  margin-top: 20px;
+}
+
+.movie-details .info-section .title {
+  font-weight: bold;
+}
+
+.modal {
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  scroll-behavior: none;
+}
+
+.modal-content {
+  padding: 20px;
+  background-color: white;
+  width: 75%;
+}
